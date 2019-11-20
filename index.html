@@ -6,13 +6,40 @@
     </head>
     <body>
         <div id='titleBar'>
-            <div id='hamburger'>
-                <a>
-                    <img href=''>
+            <div class='notSelectable flex0' id='hamburger'>
+                <a href='#' class='flexCenter'>
+                    <img class='flex0' src='menuOpen.png'>
                 </a>
             </div>
-            <div>Your Library</div>
+            <div class='notSelectable' id='titleBarTitle'>Your Library</div>
+            <div class='notSelectable flex0' id='add'>
+                <a href='#' class='flexCenter'>
+                    <img class='flex0' src='plus.png'>
+                </a>
+            </div>
         </div>
+
+
+        <div id='addBook'>
+            <form name='addBook' method="dialog">
+                <input name='title' placeholder='Book Title:' type='text' autocomplete="off">
+                <div class='spacer'></div>
+                <input name='author' placeholder='Author' type='text' autocomplete="off">
+                <div class='spacer'></div>
+                <input name='pageNum' placeholder='Page Count:' type='text' autocomplete="off">
+                <div class='spacer'></div>
+                <input name='notes' placeholder='Notes' type='text' autocomplete="off">
+                <div class='spacer'></div>
+                <div class='spacer' id='readAdd'>Have Read?</div>
+                <input name='read' id='readAddCheck' type='checkbox'>
+                <input type='submit'>
+            </form>
+        </div>
+
+        <div id='menu'>
+
+        </div>
+
         <div id='bookList'>
             <div class='bookListItem'>
                 <image class='bookIcon' href='closed-book.png'></image>

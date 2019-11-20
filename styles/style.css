@@ -4,6 +4,14 @@ body {
     color: #404040
 }
 
+.notSelectable {
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
 #title {
     font-size: 14pt;
     font-style:italic
@@ -29,9 +37,9 @@ body {
     margin-left:110px;
 }
 
-input {
+.bookListItem input {
     float:right;
-    margin-right:75px;
+    margin-right:75px !important;
     width:30px;
     height:30px;
     background-color: #fafafa;
@@ -61,17 +69,26 @@ input {
 }
 
 #titleBar {
-    display: block;
+    display: flex;
     position: fixed;
     z-index: 1;
     background-color: goldenrod;
-    color:white;
+    color:#e5e5e5;
     top:0px;
     width: 500px;
     height: 100px;
     border: 5px solid goldenrod;
-    border-bottom: '';
-    font: 
+    border-bottom-width: 2.5px;
+    border-top-width: 2.5px;
+    vertical-align: middle;
+    line-height: 100%;
+    align-items:center;
+}
+
+#titleBarTitle {
+    flex:8;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .smallIcons {
@@ -100,4 +117,99 @@ input {
     display:inline-block;
     position:absolute;
     font-size:12pt;
+}
+
+#hamburger {
+    float:left;
+    margin-left:19px;
+}
+
+.flex0 {
+    flex:0;
+}
+
+#add {
+    float:right;
+    margin-right:19px;
+}
+
+#titleBar div a img{
+    width:40px;
+    vertical-align: middle;
+    line-height: 100px;
+    text-align: center;
+}
+
+#titleBar div a {
+    width: 100%;
+    text-align: center;
+}
+
+#titleBar .notSelectable, #titleBar .notSelectable a{
+    height:100%;
+    vertical-align: middle;
+    line-height: 100px;
+}
+
+#menu,#addBook {
+    height:285px;
+    position:fixed;
+    top:-400px;
+    border: 5px solid goldenrod;
+    background-color:transparent;
+    z-index:0;
+}
+
+.flexCenter {
+    display: flex;
+    align-items:center;
+}
+
+#addBook form {
+    margin:20px;
+    flex:1;
+    margin: 0px 20px !important;
+    height:100%;
+}
+
+#addBook form input[type='text'], #addBook form input[type='submit'], #addBook form input[type='text']:focus{
+    float:left;
+    background-color:goldenrod;
+    border:0;
+    box-shadow: 0 0px;
+    text-align:center;
+    width:100%;
+    color: #404040;
+    outline:goldenrod auto 0px;
+    height:50px;
+    font-size:14pt;
+    padding: 0px;
+}
+
+input[type='checkbox'] {
+    margin: 0px;
+}
+
+.spacer {
+    height:0px;
+    float:left;
+    width:100%;
+}
+
+#readAdd, #readAddCheck{
+    width:50%;
+    height:50px;
+    float:left;
+    font-size:20pt;
+    line-height:50px;
+    vertical-align: middle;
+    text-align: right;
+}
+
+#readAddCheck {
+    width:30%;
+}
+
+input[type='submit'] {
+    height:40px !important;
 }
