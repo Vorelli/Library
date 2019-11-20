@@ -1,0 +1,103 @@
+body {
+    font: 40pt arial, sans-serif;
+    background-color: #e5e5e5;
+    color: #404040
+}
+
+#title {
+    font-size: 14pt;
+    font-style:italic
+}
+
+#author {
+    font-size: 12pt;
+    margin-left:20px;
+}
+
+#desc {
+    font-size:10pt;
+}
+
+.bookIcon {
+    content: url('../closed-book.png');
+    width:100px;
+    height: 100px;
+    float:left;
+}
+
+#text {
+    margin-left:110px;
+}
+
+input {
+    float:right;
+    margin-right:75px;
+    width:30px;
+    height:30px;
+    background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    border-radius: 3px;
+}
+
+#icons {
+    min-height:100px;
+    float:right;
+    width:20%;
+    position: absolute;
+    right:20px;
+    top:20px;
+    display:block;
+    width:35px;
+}
+
+.bookListItem {
+    display:block;
+    float:left;
+    min-width:550px;
+    padding: 20px;
+    height:100px;
+    position: relative;
+}
+
+#titleBar {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    background-color: goldenrod;
+    color:white;
+    top:0px;
+    width: 500px;
+    height: 100px;
+    border: 5px solid goldenrod;
+    border-bottom: '';
+    font: 
+}
+
+.smallIcons {
+    width:35px;
+    display:block;
+    position:absolute;
+    float:right;
+    right:0px;
+}
+
+#amazonLink {
+    bottom:0px;
+}
+
+#bookList {
+    min-height: 100px;
+    min-width:500px;
+    max-width:700px;
+    margin-top: 100px;
+}
+
+#readText {
+    top:5px;
+    right:85px;
+    float:right;
+    display:inline-block;
+    position:absolute;
+    font-size:12pt;
+}
