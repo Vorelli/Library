@@ -11,7 +11,7 @@
                     <img class='flex0' src='menuOpen.png'>
                 </a>
             </div>
-            <div class='notSelectable' id='titleBarTitle'>Your Library</div>
+            <div class='notSelectable' id='titleBarTitle'>Your Reading List</div>
             <div class='notSelectable flex0' id='add'>
                 <a href='#' class='flexCenter'>
                     <img class='flex0' src='plus.png'>
@@ -32,7 +32,8 @@
                 <div class='spacer'></div>
                 <div class='spacer' id='readAdd'>Have Read?</div>
                 <input name='read' id='readAddCheck' type='checkbox'>
-                <input type='submit'>
+                <input type='submit' name='submit'>
+                <input type='submit' value='Remove' name='remove'>
             </form>
         </div>
 
@@ -51,7 +52,7 @@
                     <div id=desc>Add your description/notes by clicking the edit (pencil) icon.</div>
                 </div>
                 <div id='icons'>
-                    <a href='#'><image class='smallIcons' src=editPencil.svg></image></a>
+                    <a class='editPencil' href='#'><image class='smallIcons' src=editPencil.svg></image></a>
                     <a href='#'><image id='amazonLink' class='smallIcons' src=amazonIcon.svg></image></a>
                 </div>
             </div>

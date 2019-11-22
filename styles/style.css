@@ -152,7 +152,7 @@ body {
 }
 
 #menu,#addBook {
-    height:285px;
+    height:325px;
     position:fixed;
     top:-400px;
     border: 5px solid goldenrod;
@@ -166,9 +166,7 @@ body {
 }
 
 #addBook form {
-    margin:20px;
     flex:1;
-    margin: 0px 20px !important;
     height:100%;
 }
 
