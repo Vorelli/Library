@@ -8,24 +8,24 @@ let menu = document.querySelector('#menu');
 let addBook = document.querySelector('#addBook');
 let addButton = document.querySelector('#add').firstElementChild;
 
-function Book(title, author, numPages, notes, read) {
+function Book(title, author, numPages, notes, read, cover) {
     this.title = title;
     this.author = author;
     this.numPages = numPages;
     this.notes = notes;
     this.read = read;
+    this.cover = cover;
 }
 
-function addBookToLibrary(title, author, numPages, notes, read) {
-    myLibrary.push(new Book(title,author, numPages, notes, read));
+function addBookToLibrary(title, author, numPages, notes, read, cover) {
+    myLibrary.push(new Book(title,author, numPages, notes, read, cover));
 }
 
 function render() {
     bookList.innerHTML = '';
     for(let index in myLibrary) {
-        
         bookList.appendChild(setUpTemplate(myLibrary[index], template, index==myLibrary.length-1))
-            
+        bookList.childNodes[index].querySelector('.bookIcon').style.marginTop = (100-bookList.childNodes[index].querySelector('.bookIcon').scrollHeight)/2 + 'px';
     }
     centerList();
 }
@@ -37,6 +37,7 @@ function setUpTemplate(book, template, bottomBorder) {
     temp.querySelector('#desc').textContent = book.notes;
     temp.querySelector('#read').checked = book.read;
     temp.querySelector('#read').disabled = true;
+    temp.querySelector('.bookIcon').style.content = book.cover != '' ? `URL(${book.cover})` : '';
     let tempTitle = book.title.indexOf(' ') != -1 ? book.title.replace(' ','+') : book.title;
     temp.querySelector('#amazonLink').parentElement.href = 'https://www.amazon.com/s?k=' + tempTitle + '+' + book.author.replace(' ', '+');
     temp.querySelector('.editPencil img').book = book;
@@ -45,6 +46,7 @@ function setUpTemplate(book, template, bottomBorder) {
     temp.style.borderBottom = '0';
     if(bottomBorder)
         temp.style.borderBottom ='5px solid goldenrod';
+    
     return temp;
 }
 
@@ -92,11 +94,18 @@ function toggleAdd(event) {
         form.querySelector('input[name=\'pageNum\']').value = book.numPages;
         form.querySelector('input[name=\'notes\']').value = book.notes;
         form.querySelector('input[name=\'title\']').checked = book.read;
+        form.querySelector('input[name=\'bookCover\']').value = book.cover;
         body.querySelector(`#addBook input[name='submit']`).book = book;
         form.querySelector(`input[name='remove']`).book = book;
         form.querySelector(`input[name='remove']`).addEventListener('click', removeBook);
         form.querySelector(`input[name='remove']`).style.visibility = 'visible'
     } else {
+        form.querySelector('input[name=\'title\']').value = '';
+        form.querySelector('input[name=\'author\']').value = '';
+        form.querySelector('input[name=\'pageNum\']').value = '';
+        form.querySelector('input[name=\'notes\']').value = '';
+        form.querySelector('input[name=\'bookCover\']').value = '';
+        form.querySelector('input[name=\'title\']').checked = false;
         form.querySelector(`input[name='remove']`).style.visibility = 'hidden';
         body.querySelector(`#addBook input[name='submit']`).book = undefined;
     }
@@ -135,9 +144,10 @@ function addBookForm(event) {
             book.numPages = getFrom(form, 'pageNum');
             book.notes = getFrom(form, 'notes');
             book.read = getFrom(form, 'read');
+            book.cover = getFrom(form, 'bookCover');
         }            
         else
-            addBookToLibrary(getFrom(form, 'title'), getFrom(form, 'author'), getFrom(form, 'pageNum'), getFrom(form, 'notes'), getFrom(form, 'read'))
+            addBookToLibrary(getFrom(form, 'title'), getFrom(form, 'author'), getFrom(form, 'pageNum'), getFrom(form, 'notes'), getFrom(form, 'read'), getFrom(form, 'bookCover'))
     }
     if(getOut) return;
     const inputs = document.querySelectorAll('#addBook input');
