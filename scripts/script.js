@@ -13,7 +13,7 @@ function Book(title, author, numPages, notes, read, cover) {
 }
 
 function addBookToLibrary(title, author, numPages, notes, read, cover) {
-    myLibrary.push(new Book(title,author, numPages, notes, read, cover));
+    myLibrary.push(Book(title,author, numPages, notes, read, cover));
 }
 
 function render() {
