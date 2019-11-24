@@ -9,12 +9,7 @@ let addBook = document.querySelector('#addBook');
 let addButton = document.querySelector('#add').firstElementChild;
 
 function Book(title, author, numPages, notes, read, cover) {
-    this.title = title;
-    this.author = author;
-    this.numPages = numPages;
-    this.notes = notes;
-    this.read = read;
-    this.cover = cover;
+    return {title, author, numPages, notes, read, cover};
 }
 
 function addBookToLibrary(title, author, numPages, notes, read, cover) {
@@ -79,7 +74,7 @@ function toggleMenu() {
 function toggleAdd(event) {
     body.querySelector('#addBook form input[name=\'submit\']').addEventListener('click', addBookForm);
     let containsHash = addButton.href[addButton.href.length-1]=='#';
-    let x = menuOpen(`#hamburger`) && containsHash == true ? body.querySelector('#hamburger').firstElementChild.click() : false;
+    let _ = menuOpen(`#hamburger`) && containsHash == true ? body.querySelector('#hamburger').firstElementChild.click() : false;
     addButton.firstElementChild.src = containsHash ? 'menuClose.png' : 'plus.png';
     addButton.href = containsHash ? '#+' : '#';
     addBook.style.backgroundColor = containsHash ? 'goldenrod' : 'transparent';
@@ -87,34 +82,26 @@ function toggleAdd(event) {
     addBook.style.top = containsHash ? '100px' : '-400px';
     let form = body.querySelector('#addBook form')
     let book = event.target.book;
-    if(book) {
-        //editing
-        form.querySelector('input[name=\'title\']').value = book.title;
-        form.querySelector('input[name=\'author\']').value = book.author;
-        form.querySelector('input[name=\'pageNum\']').value = book.numPages;
-        form.querySelector('input[name=\'notes\']').value = book.notes;
-        form.querySelector('input[name=\'title\']').checked = book.read;
-        form.querySelector('input[name=\'bookCover\']').value = book.cover;
-        body.querySelector(`#addBook input[name='submit']`).book = book;
-        form.querySelector(`input[name='remove']`).book = book;
-        form.querySelector(`input[name='remove']`).addEventListener('click', removeBook);
-        form.querySelector(`input[name='remove']`).style.visibility = 'visible'
-    } else {
-        form.querySelector('input[name=\'title\']').value = '';
-        form.querySelector('input[name=\'author\']').value = '';
-        form.querySelector('input[name=\'pageNum\']').value = '';
-        form.querySelector('input[name=\'notes\']').value = '';
-        form.querySelector('input[name=\'bookCover\']').value = '';
-        form.querySelector('input[name=\'title\']').checked = false;
-        form.querySelector(`input[name='remove']`).style.visibility = 'hidden';
-        body.querySelector(`#addBook input[name='submit']`).book = undefined;
-    }
+    
+    getElementFrom(form, 'title').value = !!(book) ? book.title : '';
+    getElementFrom(form, 'author').value = !!(book) ? book.author : '';
+    getElementFrom(form, 'pageNum').value = !!(book) ? book.numPages : '';
+    getElementFrom(form, 'notes').value = !!(book) ? book.notes : '';
+    getElementFrom(form, 'read').checked = !!(book) ? book.read : false;
+    getElementFrom(form, 'bookCover').value = !!(book) ? book.cover : '';
+    getElementFrom(form, 'submit').book = !!(book) ? book : undefined;
+    getElementFrom(form, 'remove').style.visibility = !!(book) ? 'visible' : 'hidden';
+    if(book) getElementFrom(form, 'remove').addEventListener('click', removeBook.bind(getElementFrom(form, 'remove'), book));
 }
 
-function removeBook(event) {
-    myLibrary.splice(myLibrary.indexOf(event.target.book), 1);
+function removeBook(_, book) {
+    myLibrary.splice(myLibrary.indexOf(book), 1);
     addButton.click();
     render();
+}
+
+function getElementFrom(form, name) {
+    return form.querySelector(`input[name='${name}']`);
 }
 
 function getFrom(form, name) {
@@ -122,19 +109,15 @@ function getFrom(form, name) {
 }
 
 function addBookForm(event) {
-    let form = body.querySelector('#addBook form');
-    let getOut = false;
+    let form = body.querySelector('#addBook form')
     if(!/[A-z]{2,}/.test(getFrom(form,'title'))) {
-        window.alert('You need to enter a title.');
-        getOut=true;
+        window.alert('You need to enter a title.');return;
     }
     else if(!/[A-z]{2,}/.test(getFrom(form,'author'))) {
-        window.alert("You need to enter an author.");
-        getOut=true;
+        window.alert("You need to enter an author.");return;
     }
     else if(!/[0-9]+/.test(getFrom(form, 'pageNum'))) {
-        window.alert("You need to enter a page count.");
-        getOut=true;
+        window.alert("You need to enter a page count.");return;
     }
     else {
         let book = event.target.book;
@@ -149,19 +132,11 @@ function addBookForm(event) {
         else
             addBookToLibrary(getFrom(form, 'title'), getFrom(form, 'author'), getFrom(form, 'pageNum'), getFrom(form, 'notes'), getFrom(form, 'read'), getFrom(form, 'bookCover'))
     }
-    if(getOut) return;
-    const inputs = document.querySelectorAll('#addBook input');
-    for(index in inputs){
-        if(inputs[index].type=='text')
-            inputs[index].value = '';
-        else
-            inputs[index].checked = false;
-    }
     addButton.click();
     render();
 }
 
 window.onresize = centerList;
-body.querySelector('#hamburger').firstElementChild.addEventListener('click', toggleMenu);
+body.querySelector('#hamburger a').addEventListener('click', toggleMenu);
 addButton.addEventListener('click', toggleAdd);
 render();
