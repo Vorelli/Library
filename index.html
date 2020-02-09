@@ -1,64 +1,102 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href='styles/reset.css' rel='stylesheet' type='text/css'>
-        <link href='styles/style.css' rel='stylesheet' type='text/css'>
-    </head>
-    <body>
-        <div id='titleBar'>
-            <div class='notSelectable flex0' id='hamburger'>
-                <a href='#' class='flexCenter'>
-                    <img class='flex0' src='menuOpen.png'>
-                </a>
-            </div>
-            <div class='notSelectable' id='titleBarTitle'>Your Reading List</div>
-            <div class='notSelectable flex0' id='add'>
-                <a href='#' class='flexCenter'>
-                    <img class='flex0' src='plus.png'>
-                </a>
-            </div>
+  <head>
+    <link href="styles/reset.css" rel="stylesheet" type="text/css" />
+    <link href="styles/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="titleBar">
+      <div class="notSelectable flex0" id="hamburger">
+        <a href="#" class="flexCenter">
+          <img class="flex0" src="menuOpen.png" />
+        </a>
+      </div>
+      <div class="notSelectable" id="titleBarTitle">Your Reading List</div>
+      <div class="notSelectable flex0" id="add">
+        <a href="#" class="flexCenter">
+          <img class="flex0" src="plus.png" />
+        </a>
+      </div>
+    </div>
+
+    <div id="addBook">
+      <form name="addBook" method="dialog">
+        <input
+          name="title"
+          placeholder="Book Title:"
+          type="text"
+          autocomplete="off"
+          pattern="[0-9A-z]{2,}"
+          required
+        />
+        <div class="spacer"></div>
+        <input
+          name="author"
+          placeholder="Author"
+          type="text"
+          autocomplete="off"
+          pattern="[A-z]{2,}"
+          required
+        />
+        <div class="spacer"></div>
+        <input
+          name="pageNum"
+          placeholder="Page Count"
+          type="text"
+          autocomplete="off"
+          pattern="[0-9]+"
+          required
+        />
+        <div class="spacer"></div>
+        <input
+          name="notes"
+          placeholder="Notes"
+          type="text"
+          autocomplete="off"
+        />
+        <div class="spacer"></div>
+        <input
+          name="bookCover"
+          placeholder="Book Cover URL (Optional)"
+          type="text"
+          autocomplete="off"
+        />
+        <div class="spacer"></div>
+        <div class="spacer" id="readAdd">Have Read?</div>
+        <input name="read" id="readAddCheck" type="checkbox" />
+        <input type="submit" name="submit" />
+        <input type="submit" value="Remove" name="remove" />
+      </form>
+    </div>
+
+    <div id="menu"></div>
+
+    <div id="bookList">
+      <div class="bookListItem">
+        <image class="bookIcon" href="closed-book.png"></image>
+        <input id="read" type="checkbox" checked="true" />
+        <div id="readText">Read?</div>
+        <div id="text">
+          <div id="title">The Hobbit</div>
+          <div id="author">By: J.R.R. Tolkein</div>
+          <div id="desc">
+            Add your description/notes by clicking the edit (pencil) icon.
+          </div>
         </div>
-
-
-        <div id='addBook'>
-            <form name='addBook' method="dialog">
-                <input name='title' placeholder='Book Title:' type='text' autocomplete="off">
-                <div class='spacer'></div>
-                <input name='author' placeholder='Author' type='text' autocomplete="off">
-                <div class='spacer'></div>
-                <input name='pageNum' placeholder='Page Count' type='text' autocomplete="off">
-                <div class='spacer'></div>
-                <input name='notes' placeholder='Notes' type='text' autocomplete="off">
-                <div class='spacer'></div>
-                <input name='bookCover' placeholder='Book Cover URL (Optional)' type='text' autocomplete='off'>
-                <div class='spacer'></div>
-                <div class='spacer' id='readAdd'>Have Read?</div>
-                <input name='read' id='readAddCheck' type='checkbox'>
-                <input type='submit' name='submit'>
-                <input type='submit' value='Remove' name='remove'>
-            </form>
+        <div id="icons">
+          <a class="editPencil" href="#"
+            ><image class="smallIcons" src="editPencil.svg"></image
+          ></a>
+          <a href="#"
+            ><image
+              id="amazonLink"
+              class="smallIcons"
+              src="amazonIcon.svg"
+            ></image
+          ></a>
         </div>
-
-        <div id='menu'>
-
-        </div>
-
-        <div id='bookList'>
-            <div class='bookListItem'>
-                <image class='bookIcon' href='closed-book.png'></image>
-                <input id='read' type='checkbox' checked="true">
-                <div id='readText'>Read?</div>
-                <div id='text'>
-                    <div id='title'>The Hobbit</div>
-                    <div id='author'>By: J.R.R. Tolkein</div>
-                    <div id=desc>Add your description/notes by clicking the edit (pencil) icon.</div>
-                </div>
-                <div id='icons'>
-                    <a class='editPencil' href='#'><image class='smallIcons' src=editPencil.svg></image></a>
-                    <a href='#'><image id='amazonLink' class='smallIcons' src=amazonIcon.svg></image></a>
-                </div>
-            </div>
-        </div>        
-        <script src='scripts/script.js'></script>
-    </body>
+      </div>
+    </div>
+    <script src="scripts/script.js"></script>
+  </body>
 </html>
