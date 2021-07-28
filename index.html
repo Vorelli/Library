@@ -26,7 +26,7 @@
           placeholder="Book Title:"
           type="text"
           autocomplete="off"
-          pattern="[0-9A-z]{2,}"
+          pattern="[0-9A-z .:]{2,}"
           required
         />
         <div class="spacer"></div>
@@ -35,7 +35,7 @@
           placeholder="Author"
           type="text"
           autocomplete="off"
-          pattern="[A-z]{2,}"
+          pattern="[A-z .:]{2,}"
           required
         />
         <div class="spacer"></div>
@@ -97,6 +97,21 @@
         </div>
       </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: 'AIzaSyC7lmZx6L84SWvslKabv5ABzZwSZGW_ORU',
+        authDomain: 'library-9623e.firebaseapp.com',
+        projectId: 'library-9623e',
+        storageBucket: 'library-9623e.appspot.com',
+        messagingSenderId: '527605958638',
+        appId: '1:527605958638:web:057c3902d2fe8ad68470ff',
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
     <script src="scripts/script.js"></script>
   </body>
 </html>
